@@ -1,9 +1,10 @@
 import React from 'react';
 import {ResponsiveNetwork} from "@nivo/network";
+import styled from "styled-components";
 
 const Map = ({data}) => {
 	return (
-		<div>
+		<MapWrapper>
 			<ResponsiveNetwork
 				data={data}
 				margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
@@ -16,8 +17,13 @@ const Map = ({data}) => {
 				motionStiffness={160}
 				motionDamping={12}
 			/>
-		</div>
+		</MapWrapper>
 	)
 }
 
 export default Map;
+
+const MapWrapper = styled.div`
+	height: 100vh;
+	width: 100%;
+`;
