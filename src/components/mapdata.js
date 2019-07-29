@@ -1,4 +1,4 @@
-const mapdata = {
+export default {
     "0": {
         "n": 4,
         "s": 8,
