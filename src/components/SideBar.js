@@ -24,7 +24,7 @@ const SidebarWrapper = styled.div`
 	width: 23vw;
 	background: #1B263B;
 	color: #E0E1DD;
-	padding: 0 2vw;
+	padding: 0 1vw;
 
 	h1 {
 		font-family: 'Forum', cursive;
