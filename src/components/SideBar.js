@@ -1,10 +1,15 @@
 import React, {  } from "react";
 import styled from "styled-components";
 
-const SideBar = (props) => {
+import List from "./List";
+
+const SideBar = ({currentState}) => {
 	return (
 		<SidebarWrapper>
-
+			<h1>{currentState.room_id} | {currentState.title}</h1>
+			<p>{currentState.description}</p>
+			<List title = "Players" items = {currentState.players}/>
+			<List title = "Items" items = {currentState.items}/>
 		</SidebarWrapper>
 	)
 }
@@ -16,6 +21,15 @@ const SidebarWrapper = styled.div`
 	top: 0;
 	right: 0;
 	height: 100vh;
-	width: 500px;
-	background: blue;
+	width: 350px;
+	background: #1B263B;
+	color: #E0E1DD;
+	padding: 0 25px;
+
+	h1 {
+		font-family: 'Forum', cursive;
+	}
+	p {
+		font-family: 'Muli', sans-serif;
+	}
 `;
