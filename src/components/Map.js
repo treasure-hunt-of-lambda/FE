@@ -2,7 +2,7 @@ import React from 'react';
 import {ResponsiveNetwork} from "@nivo/network";
 import styled, {css} from "styled-components";
 
-const Map = ({data, height, width}) => {
+const Map = ({data, height, width, id}) => {
 	const transformedMap = transformMap(data)
 	const currentRoom = ['0'];
 	const currentExits= ['1','4','8','3',];
@@ -13,7 +13,7 @@ const Map = ({data, height, width}) => {
 		"w": "rgb(255, 0, 255)",
 	}
 	return (
-		<MapWrapper height={height} width={width}>
+		<MapWrapper height={height} width={width} id = {id}>
 			<ResponsiveNetwork
 				nodes = {transformedMap.nodes}
 				links = {transformedMap.links}
@@ -43,8 +43,8 @@ const MapWrapper = styled.div`
 	width: 2000px;
 	${props => console.log(props)}
 	${props => props.height && props.width && css`
-		height: ${props.height}px
-		width: ${props.width}px
+		height: ${`${props.height}px`}
+		width: ${`${props.width}px`}
 	`}
 `;
 
