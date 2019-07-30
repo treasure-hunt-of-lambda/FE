@@ -4,6 +4,7 @@ import panzoom from "panzoom";
 
 import Map from "./components/Map";
 import SideBar from "./components/SideBar";
+import Controls from "./components/Controls";
 
 import mapdata from './components/mapdata';
 
@@ -30,6 +31,7 @@ function App() {
       <Scrollable>
         <Map data = {mapdata} height={1000} width={1000} id = "scrollable"  />  
       </Scrollable>
+      <Controls/>
       <SideBar currentState = {sampleState}/>
     </>
   );
