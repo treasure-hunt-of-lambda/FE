@@ -6,7 +6,11 @@ const List = (props) => {
 		<ListContainer>
 			<h2>{props.title}</h2>
 			<ul>
-				{props.items.map(item => <li>{item}</li>)}
+				{ props.items.length > 0 ?
+					props.items.map(item => <li>{item}</li>)
+					:
+					<li>None</li>
+				}
 			</ul>
 		</ListContainer>
 	)
@@ -20,5 +24,7 @@ const ListContainer = styled.div`
 	}
 	li {
 		font-family: 'Muli', sans-serif;
+		list-style: none;
+		margin: 5px 0;
 	}
 `;
