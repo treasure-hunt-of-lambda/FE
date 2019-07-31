@@ -1,13 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
+import ListItem from "./ListItem";
+
 const List = (props) => {
 	return (
 		<ListContainer>
 			<h2>{props.title}</h2>
 			<ul>
 				{ props.items.length > 0 ?
-					props.items.map(item => <li key = {item}>{item}</li>)
+					props.items.map(item => <ListItem key = {item} item = {item} actionable = {props.actionable}/>)
 					:
 					<li>None</li>
 				}
