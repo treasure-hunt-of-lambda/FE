@@ -11,6 +11,9 @@
 # production
 /build
 
+#mapdata
+/src/components/mapdata.js
+
 # misc
 .DS_Store
 .env.local
