@@ -17,8 +17,8 @@ const initialState = {
 }
 
 const branchTable = {
-	[actions.INIT]: (state, action) => {return {...action.payload, lastAction: Date.now()}},
-	[actions.MOVE]: (state, action) => {return {...action.payload, lastAction: Date.now()}}
+	[actions.INIT]: (state, action) => {return {...action.payload}},
+	[actions.MOVE]: (state, action) => {return {...action.payload}}
 }
 
 export default (state = initialState, action) => {
