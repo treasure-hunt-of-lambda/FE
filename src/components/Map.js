@@ -6,14 +6,12 @@ import {connect} from "react-redux";
 const Map = ({data, height, width, id, gameState}) => {
 	const transformedMap = transformMap(data)
 	const currentRoom = `${gameState.room_id}`;
-	const currentExits= gameState.exits;
 	const colors = {
 		"n": "#5D75AD",
 		"s": "#479B71",
 		"e": "#825167",
 		"w": "#E0D64C",
 	}
-	const complement_dirs = {'n': 's', 's': 'n', 'e': 'w', 'w': 'e'}
 	return (
 		<MapWrapper height={height} width={width} id = {id}>
 			<ResponsiveNetwork
