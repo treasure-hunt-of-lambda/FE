@@ -31,16 +31,10 @@ const ButtonWrapper = styled.button`
 	-webkit-appearance: none;
 	-moz-appearance: none;
 
-	&:hover,
-	&:focus {
-		background: #0053ba;
-	}
+	padding-top: 13px;
+    padding-bottom: 13px;
 
-	&:focus {
-		outline: 1px solid #fff;
-		outline-offset: -4px;
-	}
-
+	outline: none;
 	&:active {
 		transform: scale(0.99);
 	}
