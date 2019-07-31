@@ -9,7 +9,7 @@ export const MOVE = "MOVE";
 export const ON_COOLDOWN = "ON_COOLDOWN";
 export const NOT_EXIT = "NOT_EXIT";
 
-const axiosWithAuth = axios.create({
+export const axiosWithAuth = axios.create({
 	baseURL: baseURL,
 	timeout: 1000,
 	headers: {
@@ -28,13 +28,18 @@ export const init = () => dispatch => {
 	})
 }
 
-export const move = (current_room, direction, lastAction, cooldown) => dispatch => {
+export const canMakeMove = (lastAction, cooldown) => {
 	const currentTime = Date.now()
 	const elapsed = (currentTime - lastAction)/1000;
-	if (elapsed < cooldown){
+	return [elapsed <= cooldown, elapsed] 
+}
+
+export const move = (current_room, direction, lastAction, cooldown) => dispatch => {
+	const canMove = canMakeMove(lastAction, cooldown);
+	if (canMove[0]){
 		dispatch({
 			type: ON_COOLDOWN,
-			payload: cooldown - elapsed 
+			payload: cooldown - canMove[1]
 		})
 		return
 	}
