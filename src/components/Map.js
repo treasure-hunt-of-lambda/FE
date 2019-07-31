@@ -7,10 +7,10 @@ const Map = ({data, height, width, id}) => {
 	const currentRoom = ['0'];
 	const currentExits= ['1','4','8','3',];
 	const colors = {
-		"n": "rgb(255, 0, 0)",
-		"s": "rgb(0, 255, 0)",
-		"e": "rgb(0, 0, 255)",
-		"w": "rgb(255, 0, 255)",
+		"n": "#5D75AD",
+		"s": "#479B71",
+		"e": "#825167",
+		"w": "#E0D64C",
 	}
 	return (
 		<MapWrapper height={height} width={width} id = {id}>
