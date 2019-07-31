@@ -7,7 +7,7 @@ const List = (props) => {
 			<h2>{props.title}</h2>
 			<ul>
 				{ props.items.length > 0 ?
-					props.items.map(item => <li>{item}</li>)
+					props.items.map(item => <li key = {item}>{item}</li>)
 					:
 					<li>None</li>
 				}
