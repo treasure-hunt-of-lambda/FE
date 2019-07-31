@@ -13,12 +13,12 @@ const initialState = {
 	"cooldown": 1.0,
 	"errors": [],
 	"messages": [],
-	"lastAction": new Date()
+	"lastAction": Date.now()
 }
 
 const branchTable = {
-	[actions.INIT]: (state, action) => {return {...action.payload, lastAction: new Date()}},
-	[actions.MOVE]: (state, action) => {return {...action.payload, lastAction: new Date()}}
+	[actions.INIT]: (state, action) => {return {...action.payload, lastAction: Date.now()}},
+	[actions.MOVE]: (state, action) => {return {...action.payload, lastAction: Date.now()}}
 }
 
 export default (state = initialState, action) => {
