@@ -9,7 +9,7 @@ const SideBar = ({currentState}) => {
 			<h1>{currentState.room_id} | {currentState.title}</h1>
 			<p>{currentState.description}</p>
 			<List title = "Players" items = {currentState.players}/>
-			<List title = "Items" items = {currentState.items}/>
+			<List title = "Items" items = {currentState.items} actionable = {true} click = {() => console.log("getItem")}/>
 		</SidebarWrapper>
 	)
 }
