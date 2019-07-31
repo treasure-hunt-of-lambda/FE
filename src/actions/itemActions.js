@@ -28,7 +28,31 @@ export const getItem = (item, lastAction, cooldown) => dispatch=> {
 	}
 }
 
-export const refreshInventoryAndStatus = (item, lastAction, cooldown) => dispatch=> {
+export const dropItem = (item, lastAction, cooldown) => dispatch=> {
+	const canMove = canMakeMove(lastAction, cooldown);
+
+	if (!canMove[0]){
+		dispatch({
+			type: ON_COOLDOWN,
+			payload: cooldown - canMove[1]
+		})
+		return
+	}
+	else {
+		axiosWithAuth.post("/drop", {
+			name: item
+		}).then(res => {
+			dispatch({
+				type: DROP_ITEM,
+				payload: item
+			})
+		}).catch(err => {
+			console.log(err)
+		})
+	}
+}
+
+export const refreshInventoryAndStatus = (lastAction, cooldown) => dispatch=> {
 	const canMove = canMakeMove(lastAction, cooldown);
 
 	if (!canMove[0]){
