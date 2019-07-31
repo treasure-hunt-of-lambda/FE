@@ -23,7 +23,7 @@ const ControlsWrapper = styled.div`
 	bottom: 0;
 	left: 0;
 	height: 50px;
-	width: 75vw;
+	width: 78vw;
 	background: #2F394C;
 
 	display: flex;
