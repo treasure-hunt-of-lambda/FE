@@ -4,6 +4,7 @@ const authToken = `Token ${process.env.REACT_APP_PLAYER_KEY}`;
 
 export const INIT = "INIT";
 export const MOVE = "MOVE";
+export const ON_COOLDOWN = "ON_COOLDOWN";
 
 const axiosWithAuth = axios.create({
 	baseURL: baseURL,
@@ -24,16 +25,26 @@ export const init = () => dispatch => {
 	})
 }
 
-export const move = (dir) => dispatch => {
-	axiosWithAuth.post("/move", {
-		direction: dir
-	}).then(res => {
+export const move = (dir, lastAction, cooldown) => dispatch => {
+	const currentTime = Date.now()
+	const elapsed = (currentTime - lastAction)/1000;
+	if (elapsed < cooldown){
 		dispatch({
-			type: MOVE,
-			payload: res.data
+			type: ON_COOLDOWN,
+			payload: cooldown - elapsed 
 		})
-	}).catch(err => {
-		console.log(err)
-	})
-
+		return
+	}
+	else {
+		axiosWithAuth.post("/move", {
+			direction: dir
+		}).then(res => {
+			dispatch({
+				type: MOVE,
+				payload: res.data
+			})
+		}).catch(err => {
+			console.log(err)
+		})
+	}
 }
