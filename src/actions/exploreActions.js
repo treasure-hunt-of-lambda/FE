@@ -1,10 +1,13 @@
 import axios from "axios";
+import map from "../components/mapdata";
+
 const baseURL = "https://lambda-treasure-hunt.herokuapp.com/api/adv/";
 const authToken = `Token ${process.env.REACT_APP_PLAYER_KEY}`;
 
 export const INIT = "INIT";
 export const MOVE = "MOVE";
 export const ON_COOLDOWN = "ON_COOLDOWN";
+export const NOT_EXIT = "NOT_EXIT";
 
 const axiosWithAuth = axios.create({
 	baseURL: baseURL,
@@ -25,7 +28,7 @@ export const init = () => dispatch => {
 	})
 }
 
-export const move = (dir, lastAction, cooldown) => dispatch => {
+export const move = (current_room, direction, lastAction, cooldown) => dispatch => {
 	const currentTime = Date.now()
 	const elapsed = (currentTime - lastAction)/1000;
 	if (elapsed < cooldown){
@@ -35,9 +38,15 @@ export const move = (dir, lastAction, cooldown) => dispatch => {
 		})
 		return
 	}
+	else if (!Object.keys(map[`${current_room}`]).includes(direction)){
+		dispatch({
+			type: NOT_EXIT
+		})
+	}
 	else {
 		axiosWithAuth.post("/move", {
-			direction: dir
+			direction,
+			next_room_id: `${map[`${current_room}`][direction]}`
 		}).then(res => {
 			dispatch({
 				type: MOVE,
