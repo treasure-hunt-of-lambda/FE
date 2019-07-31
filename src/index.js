@@ -10,13 +10,13 @@ import {createStore, applyMiddleware, compose} from "redux";
 import {Provider} from "react-redux";
 
 import rootReducer from "./reducers";
-import {checkTimeOut} from "./customReduxMiddlewares";
+import {setLastAction} from "./customReduxMiddlewares";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
 	rootReducer,
-	composeEnhancers(applyMiddleware(thunk,logger, checkTimeOut))
+	composeEnhancers(applyMiddleware(thunk,logger, setLastAction))
 );
 
 ReactDOM.render(
