@@ -25,7 +25,7 @@ export const init = () => dispatch => {
 }
 
 export const move = (dir) => dispatch => {
-	axiosWithAuth("/move", {
+	axiosWithAuth.post("/move", {
 		direction: dir
 	}).then(res => {
 		dispatch({
