@@ -12,10 +12,10 @@ const Controls = (props) => {
 	return (
 		<ControlsWrapper>
 			<Button color = "#778DA9" hoverColor = "#6D819A" click = {()=> console.log("click")} Icon = {ToggleLeft}/>
-			<Button color = "#5D75AD" hoverColor = "#556B9E" click = {()=> props.move(props.room_id, "n", props.lastAction, props.cooldown)} Icon = {Circle}/>
-			<Button color = "#479B71" hoverColor = "#57A47D" click = {()=> props.move(props.room_id, "s", props.lastAction, props.cooldown)} Icon = {Circle}/>
-			<Button color = "#825167" hoverColor = "#8D6074" click = {()=> props.move(props.room_id, "e", props.lastAction, props.cooldown)} Icon = {Circle}/>
-			<Button color = "#E0D64C" hoverColor = "#CCC346" click = {()=> props.move(props.room_id, "w", props.lastAction, props.cooldown)} Icon = {Circle}/>
+			<Button color = "#5D75AD" hoverColor = {props.exits.includes("n") ? "#556B9E" : "disable"} click = {()=> props.move(props.room_id, "n", props.lastAction, props.cooldown)} Icon = {Circle}/>
+			<Button color = "#479B71" hoverColor = {props.exits.includes("s") ? "#57A47D" : "disable"} click = {()=> props.move(props.room_id, "s", props.lastAction, props.cooldown)} Icon = {Circle}/>
+			<Button color = "#825167" hoverColor = {props.exits.includes("e") ? "#8D6074" : "disable"} click = {()=> props.move(props.room_id, "e", props.lastAction, props.cooldown)} Icon = {Circle}/>
+			<Button color = "#E0D64C" hoverColor = {props.exits.includes("w") ? "#CCC346" : "disable"} click = {()=> props.move(props.room_id, "w", props.lastAction, props.cooldown)} Icon = {Circle}/>
 		</ControlsWrapper>	
 	)
 }
@@ -25,6 +25,7 @@ const mstp = state => {
 		room_id: state.explore.room_id,
 		lastAction: state.explore.lastAction,
 		cooldown: state.explore.cooldown,
+		exits: state.explore.exits
 	}
 }
 
