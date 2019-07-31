@@ -44,5 +44,7 @@ const ButtonWrapper = styled.button`
 		&:hover {
 			background-color: ${props.hoverColor}
 		}
+
 	`}
+	background-color: ${({hoverColor}) => hoverColor === "disable" && "#BAC6C5"}
 `;
