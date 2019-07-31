@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import styled from "styled-components";
 import panzoom from "panzoom";
+import  {connect} from "react-redux";
 
 import Map from "./components/Map";
 import SideBar from "./components/SideBar";
@@ -8,7 +9,9 @@ import Controls from "./components/Controls";
 
 import mapdata from './components/mapdata';
 
-function App() {
+import {init} from "./actions";
+
+function App(props) {
 
   useEffect(() => {
     const scrollable = document.getElementById('scrollable');
@@ -24,6 +27,7 @@ function App() {
         1  // initial zoom 
       )
     panzoomInstance.moveTo(0,0)
+    props.init("data")
   },[])
 
   return (
@@ -37,7 +41,13 @@ function App() {
   );
 }
 
-export default App;
+const mstp = state => {
+  return {
+
+  }
+}
+
+export default connect(mstp,{init})(App);
 
 const Scrollable = styled.div`
   height: 100vh;
