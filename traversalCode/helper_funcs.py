@@ -46,10 +46,8 @@ def toStore(map, current_room):
 	current_room_data = {}
 	room = current_room
 	for dir in store_path:
-		print(store_path, map[f'{current_room}'], dir)
 		current_room_data = travel(map, room, dir)
 		room = current_room_data["room_id"]
-		print(current_room_data)
 	return current_room_data
 
 def sellItems(items):
