@@ -7,7 +7,7 @@ export const REFRESH_INVENTORY_STATUS = "REFRESH_INVENTORY_STATUS";
 export const getItem = (item, lastAction, cooldown) => dispatch=> {
 	const canMove = canMakeMove(lastAction, cooldown);
 
-	if (!canMove[0]){
+	if (canMove[0]){
 		dispatch({
 			type: ON_COOLDOWN,
 			payload: cooldown - canMove[1]
@@ -31,7 +31,7 @@ export const getItem = (item, lastAction, cooldown) => dispatch=> {
 export const dropItem = (item, lastAction, cooldown) => dispatch=> {
 	const canMove = canMakeMove(lastAction, cooldown);
 
-	if (!canMove[0]){
+	if (canMove[0]){
 		dispatch({
 			type: ON_COOLDOWN,
 			payload: cooldown - canMove[1]
