@@ -14,14 +14,20 @@ const Inventory = (props) => {
 			<Header onClick = {() => setIsHidden(prev => !prev)}>
 				<h1>Inventory {props.carrying}/{props.capacity}</h1>
 			</Header>
-			<RefreshCw/>
+			<Clickable margin = "10px">
+				<RefreshCw/>
+			</Clickable>
 
 			<ul>
-				{props.items.map(item => {
+				{props.items.map((item, index) => {
 					return (
-						<li>
-							<DollarSign/>
-							<Upload/>
+						<li key = {`${item}${index}`}>
+							<Clickable>
+								<DollarSign/>
+							</Clickable>
+							<Clickable>
+								<Upload/>
+							</Clickable>
 							{item}
 						</li>
 					)
@@ -52,10 +58,7 @@ const mstp = state => {
 export default connect(mstp,{dropItem})(Inventory);
 
 const InventoryWrapper = styled.div`
-	// position: fixed;
 	display: block;
-	// bottom:0;
-	// right: 0;
 	z-index: 10;
 	position: fixed;
     bottom: 0;
@@ -67,11 +70,26 @@ const InventoryWrapper = styled.div`
     color: #E0E1DD;
     padding: 0 1vw;
 	min-width: 260px;
-	
+
+	li{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		word-break: break-word;
+	}
 `;
 
 const Header = styled.div`
 	&:hover{
 		cursor: pointer;
 	}
+`;
+
+const Clickable = styled.div`
+	background: none;
+	&:hover{
+		cursor: pointer;
+	}
+	width: min-content;
+	margin ${props => props.margin ? props.margin : "5px"}
 `;
