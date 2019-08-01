@@ -2,8 +2,8 @@ import * as actions from "../actions";
 
 const initialState = {
 	"name": "",
-	"cooldown": 2.0,
-	"encumbrance": 2,  // How much are you carrying?
+	"cooldown": 0,
+	"encumbrance": 0,  // How much are you carrying?
 	"strength": 10,  // How much can you carry?
 	"speed": 10,  // How fast do you travel?
 	"gold": 0,
