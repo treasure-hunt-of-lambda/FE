@@ -9,7 +9,15 @@ const List = (props) => {
 			<h2>{props.title}</h2>
 			<ul>
 				{ props.items.length > 0 ?
-					props.items.map(item => <ListItem key = {item} item = {item} actionable = {props.actionable}/>)
+					props.items.map(item => 
+					<ListItem 
+						key = {item} 
+						item = {item} 
+						actionable = {props.actionable} 
+						click = {props.click}
+						lastAction = {props.lastAction}
+						cooldown = {props.cooldown}
+						/>)
 					:
 					<li>None</li>
 				}
