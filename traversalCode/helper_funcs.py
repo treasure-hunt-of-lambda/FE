@@ -32,3 +32,10 @@ def travel(map, current_room, dir):
 	data = r.json()
 	time.sleep(data["cooldown"])
 	return  data
+
+def getStatus():
+	r = requests.post(f"{base_url}/status/", headers = headers) 
+	status = r.json()
+	print(status)
+	time.sleep(status["cooldown"])
+	return status
