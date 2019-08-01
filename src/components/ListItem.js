@@ -6,7 +6,6 @@ import {Download} from "react-feather";
 const ListItem = (props) => {
 	return (
 		<StyledItem>
-		{console.log(props.item)}
 		{props.actionable ? <ItemButton onClick = {() => props.click(props.item, props.lastAction, props.cooldown)}><Download/></ItemButton> : null}
 		<p>{props.item}</p>
 		</StyledItem>
