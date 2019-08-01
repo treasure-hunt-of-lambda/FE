@@ -63,12 +63,10 @@ export const refreshInventoryAndStatus = (lastAction, cooldown) => dispatch=> {
 		return
 	}
 	else {
-		axiosWithAuth.post("/status", {
-			name: item
-		}).then(res => {
+		axiosWithAuth.post("/status").then(res => {
 			dispatch({
 				type: GET_ITEM,
-				payload: item
+				payload: res
 			})
 		}).catch(err => {
 			console.log(err)
