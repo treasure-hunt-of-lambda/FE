@@ -59,7 +59,7 @@ export const refreshInventoryAndStatus = (lastAction, cooldown) => dispatch=> {
 			type: ON_COOLDOWN,
 			payload: cooldown - canMove[1]
 		})
-		return
+		return false
 	}
 	else {
 		axiosWithAuth.post("/status").then(res => {
@@ -70,5 +70,6 @@ export const refreshInventoryAndStatus = (lastAction, cooldown) => dispatch=> {
 		}).catch(err => {
 			console.log(err)
 		})
+		return true
 	}
 }
