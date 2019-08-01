@@ -15,12 +15,13 @@ def valid_proof(last_proof, proof):
 	guess_string = f'{last_proof}{proof}'.encode()
 	guess_hash = hashlib.sha256(guess_string).hexdigest()
 
-	return guess_hash[:9] == '000000000'
+	return guess_hash[:7] == '0000000'
 
 def proof_of_work(last_proof):
 	proof = 0
 	while valid_proof(last_proof, proof) is False:
-		proof += random.randint(1, 100)
+		# proof += random.randint(1, 10)
+		proof += 1
 
 	return proof
 
@@ -41,6 +42,7 @@ if __name__ == '__main__':
 		last_proof = res.json()['proof']
 		time.sleep(res.json()['cooldown'])
 		new_proof = proof_of_work(last_proof)
+		print(new_proof)
 		mine_response = requests.post(f"{base_url}/mine/", json={'proof': new_proof})
 		time.sleep(mine_response.json()["cooldown"])																
 		if mine_response.json()['message'] == 'success':
