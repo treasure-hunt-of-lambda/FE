@@ -27,6 +27,7 @@ def getPathToRoom(map, starting_room, target_room):
 
 # return travel data
 def travel(map, current_room, dir):
+	print(current_room, map[f'{current_room}'], dir)
 	r = requests.post(f"{base_url}/move/", headers = headers, json= {"direction": dir, "next_room_id": f"{map[f'{current_room}'][dir]}"}) 
 	print(r)
 	data = r.json()
@@ -43,13 +44,27 @@ def getStatus():
 def toStore(map, current_room):
 	store_path = getPathToRoom(map, current_room, "1")
 	current_room_data = {}
+	room = current_room
 	for dir in store_path:
-		current_room_data = travel(map, current_room, dir)
+		print(store_path, map[f'{current_room}'], dir)
+		current_room_data = travel(map, room, dir)
+		room = current_room_data["room_id"]
+		print(current_room_data)
 	return current_room_data
 
 def sellItems(items):
 	for item in items:
-		r = requests.post(f"{base_url}/status/", headers = headers, json = {"name": item, "confirm": "yes"}) 
+		r = requests.post(f"{base_url}/sell/", headers = headers, json = {"name": item, "confirm": "yes"}) 
 		sell_data = r.json()
 		time.sleep(sell_data["cooldown"])
 		
+def getItems(items):
+	status = {}
+	for item in items:
+		r = requests.post(f"{base_url}/take/", headers = headers, json = {"name": item}) 
+		sell_data = r.json()
+		time.sleep(sell_data["cooldown"])
+		status = getStatus()
+		if status["encumbrance"] >= status["strength"]//2:
+			break
+	return status
