@@ -47,5 +47,6 @@ const SidebarWrapper = styled.div`
 	}
 	p {
 		font-family: 'Muli', sans-serif;
+		margin: 0;
 	}
 `;
