@@ -1,5 +1,6 @@
 from map import data
 from helper_funcs import getPathToRoom
+from helper_funcs import travel
 
 from queue import Queue
 
@@ -11,12 +12,6 @@ import time
 base_url = "https://lambda-treasure-hunt.herokuapp.com/api/adv"
 headers = {"Authorization": "Token 3b5ce4bde563d93d6ab89e3b8b9afd874e87f196"}
 
-# return travel data
-def travel(dir):
-    r = requests.post(f"{base_url}/move/", headers = headers, json= {"direction": dir}) 
-    data = r.json()
-    time.sleep(data["cooldown"])
-    return  data
 
 rooms = list(data.keys())
 
@@ -35,8 +30,8 @@ while True:
 
 	# follow the path
 	for dir in path:
-		new_room_data = travel(dir)
-		current_room = new_room_data["room_id"]
+		new_room_data = travel(data, current_room,dir)
+		current_room = f'{new_room_data["room_id"]}'
 		print(new_room_data)
 
 	# after getting to the last dir, it gets another target room randomly
