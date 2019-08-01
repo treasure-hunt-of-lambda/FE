@@ -6,10 +6,11 @@ import  {connect} from "react-redux";
 import Map from "./components/Map";
 import SideBar from "./components/SideBar";
 import Controls from "./components/Controls";
+import Inventory from "./components/Inventory";
 
 import mapdata from './components/mapdata';
 
-import {init, refreshInventoryAndStatus} from "./actions";
+import {init, refreshInventoryAndStatus, canMakeMove} from "./actions";
 
 function App(props) {
 
@@ -28,7 +29,12 @@ function App(props) {
       );
     panzoomInstance.moveTo(0,0);
     props.init("data");
-    props.refreshInventoryAndStatus(props.gameState.lastAction, props.gameState.cooldown);
+    const settingInventory = setInterval(() => {
+      props.refreshInventoryAndStatus(props.gameState.lastAction, props.gameState.cooldown);
+      if (!canMakeMove(props.gameState.lastAction, props.gameState.cooldown)[0]){
+        clearInterval(settingInventory);
+      }
+    }, 2000);
   },[])
 
   return (
@@ -38,6 +44,7 @@ function App(props) {
       </Scrollable>
       <Controls/>
       <SideBar currentState = {props.gameState}/>
+      <Inventory/>
     </>
   );
 }
