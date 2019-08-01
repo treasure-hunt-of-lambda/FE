@@ -17,6 +17,7 @@ const Inventory = (props) => {
 			<Clickable margin = "10px">
 				<RefreshCw/>
 			</Clickable>
+			<h2>${props.gold}</h2>
 
 			<ul>
 				{props.items.map((item, index) => {
@@ -51,7 +52,8 @@ const mstp = state => {
 		carrying: state.items.encumbrance,
 		capacity: state.items.strength,
 		lastAction: state.explore.lastAction,
-		cooldown: state.explore.cooldown
+		cooldown: state.explore.cooldown,
+		gold: state.items.gold
 	}
 }
 
