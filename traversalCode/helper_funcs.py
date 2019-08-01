@@ -5,7 +5,7 @@ from queue import Queue
 def getPathToRoom(map, starting_room, target_room):
 	visited = []
 	q = Queue()
-	q.put([(starting_room)])
+	q.put([(starting_room, 0)])
 	while not q.empty():
 		new_room_path = q.get()
 		new_room = new_room_path[-1]
