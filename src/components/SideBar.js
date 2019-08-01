@@ -16,7 +16,7 @@ const SideBar = ({currentState, getItem}) => {
 				title = "Items" 
 				items = {currentState.items} 
 				actionable = {true} 
-				click = {() => getItem()} 
+				click = {getItem} 
 				lastAction = {currentState.lastAction} 
 				cooldown = {currentState.cooldown}/>
 		</SidebarWrapper>
