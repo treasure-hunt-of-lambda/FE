@@ -30,8 +30,8 @@ function App(props) {
     panzoomInstance.moveTo(0,0);
     props.init("data");
     const settingInventory = setInterval(() => {
-      props.refreshInventoryAndStatus(props.gameState.lastAction, props.gameState.cooldown);
-      if (!canMakeMove(props.gameState.lastAction, props.gameState.cooldown)[0]){
+      const success = props.refreshInventoryAndStatus(props.gameState.lastAction, props.gameState.cooldown)
+      if (success){
         clearInterval(settingInventory);
       }
     }, 2000);
