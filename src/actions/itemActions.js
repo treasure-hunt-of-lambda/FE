@@ -54,8 +54,7 @@ export const dropItem = (item, lastAction, cooldown) => dispatch=> {
 
 export const refreshInventoryAndStatus = (lastAction, cooldown) => dispatch=> {
 	const canMove = canMakeMove(lastAction, cooldown);
-
-	if (!canMove[0]){
+	if (canMove[0]){
 		dispatch({
 			type: ON_COOLDOWN,
 			payload: cooldown - canMove[1]
