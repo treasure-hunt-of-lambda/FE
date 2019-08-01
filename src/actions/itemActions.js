@@ -57,7 +57,7 @@ export const refreshInventoryAndStatus = (lastAction, cooldown) => dispatch=> {
 
 	if (!canMove[0]){
 		dispatch({
-			type: REFRESH_INVENTORY_STATUS,
+			type: ON_COOLDOWN,
 			payload: cooldown - canMove[1]
 		})
 		return
@@ -65,7 +65,7 @@ export const refreshInventoryAndStatus = (lastAction, cooldown) => dispatch=> {
 	else {
 		axiosWithAuth.post("/status").then(res => {
 			dispatch({
-				type: GET_ITEM,
+				type: REFRESH_INVENTORY_STATUS,
 				payload: res
 			})
 		}).catch(err => {
