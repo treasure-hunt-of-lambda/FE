@@ -1,26 +1,32 @@
 import React from "react";
 import styled, {css} from "styled-components";
+import {Download} from "react-feather";
 
-const Button = ({color, hoverColor, click, Icon}) => {
+
+const ListItem = (props) => {
 	return (
-		<ButtonWrapper color = {color} hoverColor = {hoverColor} onClick = {click}>
-			<Icon/>
-		</ButtonWrapper>
+		<StyledItem>
+		{props.actionable ? <ItemButton onClick = {() => props.click(props.item, props.lastAction, props.cooldown)}><Download/></ItemButton> : null}
+		<p>{props.item}</p>
+		</StyledItem>
 	)
 }
 
-export default Button;
+export default ListItem;
 
-const ButtonWrapper = styled.button`
-	// referenced 
-	// https://css-tricks.com/overriding-default-button-styles/
+const StyledItem = styled.li`
+	word-break: break-word;
+	display: flex;
+    align-items: center;
+`;
 
+const ItemButton = styled.button`
 	display: inline-block;
 	border: none;
-	padding: 1rem 2rem;
-	margin: 0;
+	padding: 10px;
+	margin: 0 5px;
 	text-decoration: none;
-	background: #0069ed;
+	background: none;
 	color: #ffffff;
 	font-family: sans-serif;
 	font-size: 1rem;
@@ -46,5 +52,4 @@ const ButtonWrapper = styled.button`
 		}
 
 	`}
-	background-color: ${({hoverColor}) => hoverColor === "disable" && "#BAC6C5"}
 `;

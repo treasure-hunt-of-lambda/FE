@@ -1,20 +1,35 @@
 import React, {  } from "react";
 import styled from "styled-components";
+import {connect} from "react-redux";
 
 import List from "./List";
 
-const SideBar = ({currentState}) => {
+import {getItem} from "../actions";
+
+const SideBar = ({currentState, getItem}) => {
 	return (
 		<SidebarWrapper>
 			<h1>{currentState.room_id} | {currentState.title}</h1>
 			<p>{currentState.description}</p>
 			<List title = "Players" items = {currentState.players}/>
-			<List title = "Items" items = {currentState.items}/>
+			<List 
+				title = "Items" 
+				items = {currentState.items} 
+				actionable = {true} 
+				click = {getItem} 
+				lastAction = {currentState.lastAction} 
+				cooldown = {currentState.cooldown}/>
 		</SidebarWrapper>
 	)
 }
 
-export default SideBar;
+const mstp = state => {
+	return {
+
+	}
+}
+
+export default connect(mstp,{getItem})(SideBar);
 
 const SidebarWrapper = styled.div`
 	position: fixed;
@@ -32,5 +47,6 @@ const SidebarWrapper = styled.div`
 	}
 	p {
 		font-family: 'Muli', sans-serif;
+		margin: 0;
 	}
 `;
