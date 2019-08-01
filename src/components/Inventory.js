@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {RefreshCw, Upload, DollarSign} from "react-feather";
 
 import List from "./List";
-import {dropItem} from "../actions";
+import {dropItem, sellItem} from "../actions";
 
 const Inventory = (props) => {
 	const [isHidden, setIsHidden] = useState(true);
@@ -22,7 +22,7 @@ const Inventory = (props) => {
 				{props.items.map((item, index) => {
 					return (
 						<li key = {`${item}${index}`}>
-							<Clickable>
+							<Clickable onClick = {() => props.sellItem(item, props.lastAction, props.cooldown)}>
 								<DollarSign/>
 							</Clickable>
 							<Clickable onClick = {() => props.dropItem(item, props.lastAction, props.cooldown)}>
@@ -55,7 +55,7 @@ const mstp = state => {
 	}
 }
 
-export default connect(mstp,{dropItem})(Inventory);
+export default connect(mstp,{dropItem, sellItem})(Inventory);
 
 const InventoryWrapper = styled.div`
 	display: block;
