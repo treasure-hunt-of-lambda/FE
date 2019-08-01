@@ -16,7 +16,8 @@ const initialState = {
 const branchTable = {
 	[actions.REFRESH_INVENTORY_STATUS]: (state, action) => {return {...action.payload}},
 	[actions.GET_ITEM]: (state, action) => {return {...state, inventory: [...state.inventory, action.payload]}},
-	[actions.DROP_ITEM]: (state, action) => {return {...state, inventory: state.inventory.filter(item => item !== action.payload)}}
+	[actions.DROP_ITEM]: (state, action) => {return {...state, inventory: state.inventory.filter(item => item !== action.payload)}},
+	[actions.SELL_ITEM]: (state, action) => {return {...state, inventory: state.inventory.filter(item => item !== action.payload)}}
 }
 
 export default (state = initialState, action) => {
