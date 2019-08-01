@@ -46,3 +46,10 @@ def toStore(map, current_room):
 	for dir in store_path:
 		current_room_data = travel(map, current_room, dir)
 	return current_room_data
+
+def sellItems(items):
+	for item in items:
+		r = requests.post(f"{base_url}/status/", headers = headers, json = {"name": item, "confirm": "yes"}) 
+		sell_data = r.json()
+		time.sleep(sell_data["cooldown"])
+		
