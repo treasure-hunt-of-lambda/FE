@@ -27,7 +27,7 @@ def getPathToRoom(map, starting_room, target_room):
 
 # return travel data
 def travel(map, current_room, dir):
-	r = requests.post(f"{base_url}/move/", headers = headers, json= {"direction": dir, "next_room_id": f"{map[current_room][dir]}"}) 
+	r = requests.post(f"{base_url}/move/", headers = headers, json= {"direction": dir, "next_room_id": f"{map[f'{current_room}'][dir]}"}) 
 	print(r)
 	data = r.json()
 	time.sleep(data["cooldown"])
@@ -39,3 +39,10 @@ def getStatus():
 	print(status)
 	time.sleep(status["cooldown"])
 	return status
+
+def toStore(map, current_room):
+	store_path = getPathToRoom(map, current_room, "1")
+	current_room_data = {}
+	for dir in store_path:
+		current_room_data = travel(map, current_room, dir)
+	return current_room_data
