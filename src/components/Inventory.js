@@ -25,7 +25,7 @@ const Inventory = (props) => {
 							<Clickable>
 								<DollarSign/>
 							</Clickable>
-							<Clickable>
+							<Clickable onClick = {() => props.dropItem(item, props.lastAction, props.cooldown)}>
 								<Upload/>
 							</Clickable>
 							{item}
