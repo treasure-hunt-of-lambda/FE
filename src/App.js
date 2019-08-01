@@ -9,7 +9,7 @@ import Controls from "./components/Controls";
 
 import mapdata from './components/mapdata';
 
-import {init} from "./actions";
+import {init, refreshInventoryAndStatus} from "./actions";
 
 function App(props) {
 
@@ -25,9 +25,10 @@ function App(props) {
         0, // initial x position
         0, // initial y position
         1  // initial zoom 
-      )
-    panzoomInstance.moveTo(0,0)
-    props.init("data")
+      );
+    panzoomInstance.moveTo(0,0);
+    props.init("data");
+    props.refreshInventoryAndStatus(props.gameState.lastAction, props.gameState.cooldown);
   },[])
 
   return (
@@ -47,7 +48,7 @@ const mstp = state => {
   }
 }
 
-export default connect(mstp,{init})(App);
+export default connect(mstp,{init, refreshInventoryAndStatus})(App);
 
 const Scrollable = styled.div`
   height: 100vh;
